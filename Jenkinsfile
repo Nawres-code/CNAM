@@ -1,19 +1,18 @@
 pipeline {
     agent any
     tools {
-        jdk 'JAVA_HOME'
         maven 'MAVEN_HOME'
     }
     stages {
         stage('GIT') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/Nawres-code/CNAM.git'
+                    url: 'https://github.com/Nawres-code/CNAM.git'
             }
         }
-        stage('Compile Stage') {
+        stage('SONAR ANALYSIS') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn sonar:sonar'
             }
         }
     }
